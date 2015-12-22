@@ -19,9 +19,9 @@ module QuestionBank
     end
 
     def create
-      @question_flaw = current_user.question_flaws.new(question_id: params[:question_id])
+      @question_flaw = current_user.question_flaws.new(question_flaw_params)
       if @question_flaw.save
-        render :json => {:message => "success"}
+        render :json => { :message => "success" }
       else
         render "index"
       end
@@ -69,7 +69,7 @@ module QuestionBank
 
     private
       def question_flaw_params
-        params.require(:question_flaws).permit(:question_id)
+        params.permit(:question_id)
       end
   end
 end
